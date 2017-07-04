@@ -33,7 +33,7 @@ function loader(content) {
 
 function csslocalsFromVueLoader(content) {
 
-  console.log("Begin of csslocals-from-vue-loader(), resource= " + path.basename(this.resource));
+  // console.log("Begin of csslocals-from-vue-loader(), resource= " + path.basename(this.resource));
   // console.log("Content= '''\n" + content + "\n'''");
 
   if (this.cacheable) this.cacheable();
@@ -64,21 +64,15 @@ function csslocalsFromVueLoader(content) {
   if (!exportKeys.includes('$style')) {
     exportKeys.push('$style');
   }
-  // console.log('exportKeys=', JSON.stringify(exportKeys))
 
   var cssModulePattern = new RegExp("cssModules\\[\"(.+)\"\\]\\s*=\\s*(require\\(.+\\)(\\.\\S+)?)\\s*$", "gm");
   var searchResult;
   var requireStr = "";
   while ((searchResult = cssModulePattern.exec(content)) != null) {
-    // console.log("searchResult= ###\n" + searchResult[0] + "\n###");
     if (exportKeys.includes(searchResult[1])) {
-      // var loaderStr = searchResult[2].replace(/(\.vue)\?exports.*(\"\).*$)/, "$1$2");
-      // requireStr += "exportModules[\"" + searchResult[1] + "\"] = " + loaderStr + ";\n"
       requireStr += "exportModules[\"" + searchResult[1] + "\"] = " + searchResult[2] + ";\n"
     }
-    // console.log("***\nfound module: \n[" + searchResult[1] + "] = " + searchResult[2] + "\n***");
   }
-  // requireStr += "  return;";
 
   var injectStr =
 `
@@ -92,10 +86,8 @@ for (expKey of Object.keys(exportModules)) {
 }
 module.exports.locals = exportLocals;
 `
-  // injectStr = "module.exports.locals={};\n"
   content += injectStr;
 
-  console.log("End of csslocals-from-vue-loader()");
-
+  // console.log("End of csslocals-from-vue-loader()");
   return content;
 }
