@@ -1,0 +1,23 @@
+{
+  "name": "csslocals-from-vue-loader",
+  "version": "0.1.0",
+  "description": "Import the configured css classname-localizedId maps, and export all the maps to 'exports.locals'.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ahmong/csslocals-from-vue-loader.git"
+  },
+  "keywords": [
+    "vue",
+    "webpack-loader"
+  ],
+  "author": "ahmong@126.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Ahmong/csslocals-from-vue-loader/issues"
+  },
+  "homepage": "https://github.com/Ahmong/csslocals-from-vue-loader#readme"
+}
